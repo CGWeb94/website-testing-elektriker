@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elektro Köln HR GmbH – Elektriker in Köln | Zuverlässig & Schnell</title>
+  <meta name="description" content="Elektro Köln HR GmbH – Ihr zuverlässiger Elektriker in Köln. 5,0 Sterne, 273 Bewertungen. Herd anschließen, Wallbox, Elektroinstallation. Kalker Hauptstr. 164.">
+  <meta name="keywords" content="Elektriker Köln, Elektroinstallation Köln, Herd anschließen Köln, Wallbox Köln, Elektrokasten Köln, Elektriker Kalk, Starkstrom Köln, E-Auto Ladestation Köln, Elektriker günstig Köln">
+  <meta property="og:title" content="Elektro Köln HR GmbH – Ihr Elektriker in Köln">
+  <meta property="og:description" content="Zuverlässig, schnell und günstig. 5,0 Sterne aus 273 Bewertungen. Jetzt Termin vereinbaren!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://website-testing-elektriker.vercel.app">
+  <link rel="canonical" href="https://website-testing-elektriker.vercel.app">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #FFFFFF;
+      color: #1A1A1A;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #F0F0F0; }
+    ::-webkit-scrollbar-thumb { background: #CC0000; border-radius: 3px; }
+
+    /* ── Grain ── */
+    .grain {
+      position: fixed; inset: 0; z-index: 9998; pointer-events: none;
+      opacity: 0.018;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 300px 300px;
+    }
+
+    /* ── Nav ── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+      transition: background 0.4s, box-shadow 0.4s, padding 0.35s;
+    }
+    #nav.solid {
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.07), 0 4px 24px rgba(0,0,0,0.06);
+      padding: 1rem 2.5rem;
+    }
+
+    /* Logo SVG in nav */
+    .nav-logo img { height: 38px; width: auto; display: block; }
+    .nav-logo-light { display: block; }
+    .nav-logo-dark  { display: none; }
+    #nav.solid .nav-logo-light { display: none; }
+    #nav.solid .nav-logo-dark  { display: block; }
+
+    .nav-links { display: flex; align-items: center; gap: 2.25rem; }
+    .nav-links a {
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.03em;
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      transition: color 0.2s;
+    }
+    #nav.solid .nav-links a { color: #555555; }
+    .nav-links a:hover { color: #ffffff; }
+    #nav.solid .nav-links a:hover { color: #1A1A1A; }
+    .nav-links a:focus-visible { outline: 2px solid #CC0000; outline-offset: 3px; border-radius: 3px; }
+
+    .btn-nav {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      background: #CC0000; color: #FFFFFF;
+      font-weight: 700; font-size: 0.82rem;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 0.6rem 1.2rem; border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 14px rgba(204,0,0,0.28);
+    }
+    .btn-nav:hover { background: #E61A1A; transform: translateY(-1px); }
+    .btn-nav:active { transform: none; }
+    .btn-nav:focus-visible { outline: 2px solid #CC0000; outline-offset: 3px; }
+
+    /* burger */
+    #burger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .bl {
+      width: 24px; height: 2px; background: #FFFFFF;
+      transition: transform 0.3s, opacity 0.3s, background 0.3s;
+      border-radius: 1px;
+    }
+    #nav.solid .bl { background: #1A1A1A; }
+    #burger.open .bl:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #burger.open .bl:nth-child(2) { opacity: 0; }
+    #burger.open .bl:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    #mob-menu {
+      position: fixed; inset: 0; z-index: 190;
+      background: rgba(255,255,255,0.99);
+      backdrop-filter: blur(24px);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 2.25rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    #mob-menu.open { transform: none; }
+    #mob-menu a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 2.75rem;
+      letter-spacing: 0.04em; color: #1A1A1A;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    #mob-menu a:hover { color: #CC0000; }
+
+    /* ── Primary / Outline Buttons ── */
+    .btn-p {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #CC0000; color: #FFFFFF;
+      font-weight: 700; font-size: 0.9rem;
+      letter-spacing: 0.03em; text-transform: uppercase;
+      padding: 0.85rem 1.75rem; border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(204,0,0,0.3);
+    }
+    .btn-p:hover { background: #E61A1A; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(204,0,0,0.35); }
+    .btn-p:active { transform: none; }
+    .btn-p:focus-visible { outline: 2px solid #CC0000; outline-offset: 3px; }
+
+    .btn-o {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: #1A1A1A;
+      font-weight: 600; font-size: 0.9rem;
+      letter-spacing: 0.03em; text-transform: uppercase;
+      padding: 0.85rem 1.75rem; border-radius: 8px;
+      text-decoration: none; border: 1.5px solid #D0D0D0;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-o:hover { border-color: #CC0000; color: #CC0000; transform: translateY(-2px); }
+    .btn-o:active { transform: none; }
+    .btn-o:focus-visible { outline: 2px solid #CC0000; outline-offset: 3px; }
+
+    /* ── Hero ── */
+    #hero { height: 200vh; position: relative; }
+    #hero-sticky {
+      position: sticky; top: 0;
+      height: 100vh; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 50% 55%, #f5f5f5 0%, #FFFFFF 65%);
+    }
+    .hero-glow {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(204,0,0,0.05) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
+    }
+
+    .h-word {
+      position: absolute; top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3.5rem, 8vw, 8rem);
+      letter-spacing: -0.02em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(204,0,0,0.1);
+      white-space: nowrap; pointer-events: none; user-select: none;
+    }
+    #hw-left { right: calc(50% + 210px); }
+    #hw-right { left: calc(50% + 210px); }
+
+    #vid-wrap {
+      position: relative; overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(204,0,0,0.1),
+        0 32px 80px rgba(0,0,0,0.18),
+        0 8px 24px rgba(204,0,0,0.08);
+    }
+    #vid-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vid-grade {
+      position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(140deg, rgba(204,0,0,0.08) 0%, transparent 60%);
+      mix-blend-mode: multiply;
+    }
+    #vid-cta {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.55) 60%, transparent 100%);
+      pointer-events: none;
+    }
+    #vid-cta.visible { pointer-events: auto; }
+
+    #scroll-hint {
+      position: absolute; bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+      color: rgba(26,26,26,0.35);
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      pointer-events: none;
+    }
+    .scroll-line {
+      width: 1px; height: 44px;
+      background: linear-gradient(to bottom, rgba(204,0,0,0.5), transparent);
+      animation: sline 1.8s ease-in-out infinite;
+    }
+    @keyframes sline {
+      0%,100% { transform: scaleY(1); opacity: 0.5; }
+      50%      { transform: scaleY(0.6); opacity: 1; }
+    }
+
+    /* ── Stats ── */
+    .stat-strip {
+      background: #FFFFFF;
+      border-top: 1px solid #EBEBEB;
+      border-bottom: 1px solid #EBEBEB;
+      padding: 2.5rem 2rem;
+    }
+    .stat-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 2.4rem;
+      color: #CC0000; letter-spacing: -0.02em;
+    }
+    .stat-lbl { font-size: 0.78rem; color: #888; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.3rem; }
+
+    /* ── Sections ── */
+    .section { padding: 6.5rem 0; }
+    .section-alt { background: #F7F7F7; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #CC0000; margin-bottom: 1rem;
+    }
+    .section-tag::before { content: ''; display: block; width: 22px; height: 2px; background: #CC0000; }
+
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 5vw, 3.75rem);
+      letter-spacing: -0.02em; line-height: 1.05;
+      color: #1A1A1A;
+    }
+
+    /* ── Services ── */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem;
+    }
+    .svc-card {
+      background: #FFFFFF;
+      border: 1px solid #EBEBEB;
+      border-radius: 16px; padding: 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04),
+                  0 0 0 0 rgba(204,0,0,0);
+      transition: box-shadow 0.3s, transform 0.25s, border-color 0.25s;
+    }
+    .svc-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(204,0,0,0.1), 0 2px 12px rgba(0,0,0,0.06);
+      border-color: rgba(204,0,0,0.2);
+    }
+    .svc-icon {
+      width: 46px; height: 46px;
+      background: rgba(204,0,0,0.08); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .svc-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.01em; color: #1A1A1A; margin-bottom: 0.6rem; }
+    .svc-desc { font-size: 0.88rem; color: #666; line-height: 1.72; }
+
+    /* ── Gallery ── */
+    .gallery-outer { overflow: hidden; }
+    .gallery-track {
+      display: flex; gap: 1rem;
+      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .g-slide {
+      flex: 0 0 380px; height: 300px;
+      border-radius: 16px; overflow: hidden; position: relative;
+    }
+    .g-slide img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+    .g-slide:hover img { transform: scale(1.04); }
+    .g-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.12) 50%, transparent 100%);
+    }
+    .g-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; }
+    .g-cat { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #CC0000; margin-bottom: 0.3rem; }
+    .g-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem; color: #FFFFFF; }
+    .gall-nav-btn {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: #FFFFFF; border: 1.5px solid #E0E0E0;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: #1A1A1A;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .gall-nav-btn:hover { background: #CC0000; border-color: #CC0000; color: #FFFFFF; }
+    .gall-nav-btn:disabled { opacity: 0.3; pointer-events: none; }
+    .g-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      border: none; cursor: pointer;
+      background: #D8D8D8; transition: background 0.2s, width 0.25s;
+    }
+    .g-dot.active { background: #CC0000; width: 22px; border-radius: 4px; }
+
+    /* ── About / Perks ── */
+    .about-cols { }
+    .perk-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem;
+    }
+    .perk-card {
+      background: #FFFFFF; border: 1px solid #EBEBEB;
+      border-radius: 14px; padding: 1.6rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .perk-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(204,0,0,0.08); }
+    .perk-emoji { font-size: 1.5rem; margin-bottom: 0.65rem; line-height: 1; }
+    .perk-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem; color: #1A1A1A; margin-bottom: 0.35rem; }
+    .perk-sub { font-size: 0.82rem; color: #777; line-height: 1.6; }
+
+    /* ── Testimonials (efferd columns) ── */
+    #bewertungen { overflow: hidden; }
+    .testimonials-outer {
+      display: flex;
+      gap: 1.25rem;
+      justify-content: center;
+      max-height: 680px;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
+    }
+    .tcol { flex: 0 0 320px; overflow: hidden; }
+    .tcol-track {
+      display: flex; flex-direction: column; gap: 1.25rem;
+      animation: tcol-scroll var(--dur, 22s) linear infinite;
+    }
+    .tcol-track:hover { animation-play-state: paused; }
+    @keyframes tcol-scroll {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
+    }
+    .tcard {
+      background: #FFFFFF;
+      border: 1px solid #EBEBEB;
+      border-radius: 20px;
+      padding: 1.75rem;
+      box-shadow: 0 4px 18px rgba(204,0,0,0.05), 0 1px 4px rgba(0,0,0,0.06);
+      flex-shrink: 0;
+    }
+    .tcard-stars { color: #CC0000; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 0.85rem; }
+    .tcard-text { font-size: 0.9rem; color: #444; line-height: 1.72; margin-bottom: 1.1rem; }
+    .tcard-author { display: flex; align-items: center; gap: 0.75rem; }
+    .tcard-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(204,0,0,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem; color: #CC0000;
+      flex-shrink: 0;
+    }
+    .tcard-name { font-size: 0.85rem; font-weight: 600; color: #1A1A1A; }
+    .tcard-meta { font-size: 0.73rem; color: #999; }
+
+    /* ── Trust scroll ── */
+    .trust-wrap {
+      overflow: hidden; position: relative;
+      max-width: 100%;
+    }
+    .edge-mask-l, .edge-mask-r {
+      position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none;
+    }
+    .edge-mask-l { left: 0; background: linear-gradient(to right, #FFFFFF, transparent); }
+    .edge-mask-r { right: 0; background: linear-gradient(to left, #FFFFFF, transparent); }
+    .trust-track {
+      display: flex; gap: 1rem;
+      width: max-content;
+      animation: tscroll 28s linear infinite;
+      padding: 0.5rem 0;
+    }
+    @keyframes tscroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .t-badge {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      background: #FFFFFF; border: 1px solid #E8E8E8;
+      border-radius: 100px; padding: 0.5rem 1.1rem;
+      font-size: 0.8rem; font-weight: 500; white-space: nowrap; color: #444;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .t-icon { font-size: 0.85rem; }
+
+    /* ── Contact ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .ci-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+    .ci-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: rgba(204,0,0,0.08); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; color: #CC0000;
+    }
+    .ci-lbl { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #999; margin-bottom: 0.25rem; }
+    .ci-val { font-size: 0.92rem; color: #1A1A1A; line-height: 1.55; }
+
+    /* ── Footer ── */
+    footer {
+      background: #1A1A1A;
+      padding: 2.5rem 2rem;
+      border-top: 3px solid #CC0000;
+    }
+    .footer-logo { height: 34px; width: auto; filter: brightness(0) invert(1); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .testimonials-outer .tcol:nth-child(3) { display: none; }
+      .tcol { flex: 0 0 280px; }
+    }
+    @media (max-width: 768px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .perk-grid { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: repeat(2,1fr); }
+      .about-cols { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .nav-links { display: none; }
+      #burger { display: flex; }
+      .testimonials-outer .tcol:nth-child(2) { display: none; }
+      .tcol { flex: 0 0 300px; }
+      .section { padding: 4.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ═══ NAVIGATION ═══ -->
+<header id="nav" role="banner">
+  <!-- Nav Logo: light version (over hero) and dark version (over white) -->
+  <a href="#" class="nav-logo" aria-label="Elektro Köln HR GmbH – Startseite">
+    <!-- Dark logo (shown on white nav) -->
+    <img class="nav-logo-dark" src="brand_assets/logo.svg" alt="Elektro Köln HR GmbH Logo" height="38">
+    <!-- Light logo: white text version for transparent nav over hero -->
+    <svg class="nav-logo-light" width="200" height="38" viewBox="0 0 260 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <text x="0" y="38" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="34" fill="#FFFFFF" letter-spacing="-1">Elektro Köln HR</text>
+      <text x="174" y="56" font-family="Arial,sans-serif" font-weight="400" font-size="14" fill="rgba(255,255,255,0.8)">GmbH</text>
+      <rect x="218" y="4" width="42" height="56" rx="7" fill="#CC0000"/>
+      <path d="M236 10 L228 34 L235 34 L226 54 L248 28 L240 28 L248 10 Z" fill="white"/>
+    </svg>
+  </a>
+
+  <nav class="nav-links" aria-label="Hauptnavigation">
+    <a href="#leistungen">Leistungen</a>
+    <a href="#galerie">Referenzen</a>
+    <a href="#ueber-uns">Über uns</a>
+    <a href="#bewertungen">Bewertungen</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+
+  <a href="tel:015226764422" class="btn-nav" aria-label="Jetzt anrufen 01522 6764422">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+    </svg>
+    Anrufen
+  </a>
+
+  <button id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mob-menu">
+    <span class="bl"></span><span class="bl"></span><span class="bl"></span>
+  </button>
+</header>
+
+<!-- Mobile menu -->
+<nav id="mob-menu" role="navigation" aria-label="Mobilnavigation" aria-hidden="true">
+  <a href="#leistungen" role="menuitem">Leistungen</a>
+  <a href="#galerie" role="menuitem">Referenzen</a>
+  <a href="#ueber-uns" role="menuitem">Über uns</a>
+  <a href="#bewertungen" role="menuitem">Bewertungen</a>
+  <a href="#kontakt" role="menuitem">Kontakt</a>
+  <a href="tel:015226764422" class="btn-nav" role="menuitem" style="font-size:1rem;padding:0.9rem 2rem;">01522 6764422</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero" aria-label="Hero">
+  <div id="hero-sticky">
+    <div id="hero-bg" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+
+    <span class="h-word" id="hw-left" aria-hidden="true">ELEKTRO</span>
+    <span class="h-word" id="hw-right" aria-hidden="true">KÖLN</span>
+
+    <div id="vid-wrap" style="width:380px;height:520px;border-radius:20px;" role="img" aria-label="Elektro Köln HR GmbH – Elektriker im Einsatz">
+      <video autoplay muted loop playsinline aria-hidden="true">
+        <source src="content/company_images/shutterstock_3832477437.mov" type="video/mp4">
+        <source src="content/company_images/shutterstock_3832477437.mov" type="video/quicktime">
+      </video>
+      <div class="vid-grade" aria-hidden="true"></div>
+
+      <div id="vid-cta" style="opacity:0;" aria-hidden="true">
+        <p style="font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#CC0000;margin-bottom:0.5rem;font-weight:700;">Ihr Elektriker in Köln</p>
+        <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,3.75rem);letter-spacing:-0.025em;line-height:1;color:#FFFFFF;margin-bottom:1.75rem;">
+          ELEKTRO KÖLN<br>HR GMBH
+        </h1>
+        <div style="display:flex;gap:0.875rem;flex-wrap:wrap;">
+          <a href="tel:015226764422" class="btn-p">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+            Jetzt anrufen
+          </a>
+          <a href="#leistungen" class="btn-o" style="color:#FFFFFF;border-color:rgba(255,255,255,0.4);" onmouseover="this.style.borderColor='#CC0000';this.style.color='#CC0000'" onmouseout="this.style.borderColor='rgba(255,255,255,0.4)';this.style.color='#FFFFFF'">Leistungen</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="scroll-hint" aria-hidden="true">
+      <span>Scrollen</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<div class="stat-strip">
+  <div class="stat-grid">
+    <div class="stat-item">
+      <div class="stat-num">5,0 ★</div>
+      <div class="stat-lbl">Google Bewertung</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">273</div>
+      <div class="stat-lbl">Kundenbewertungen</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">= Tag</div>
+      <div class="stat-lbl">Termin möglich</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">10+</div>
+      <div class="stat-lbl">Jahre Erfahrung</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="section" id="leistungen" aria-labelledby="svc-heading">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:2rem;align-items:end;margin-bottom:3.5rem;" class="about-cols">
+      <div>
+        <div class="section-tag">Unsere Leistungen</div>
+        <h2 class="section-title" id="svc-heading">Alles aus<br>einer Hand</h2>
+      </div>
+      <p style="color:#666;line-height:1.75;font-size:0.92rem;padding-bottom:0.4rem;">Von der Erstberatung bis zur fertigen Installation – wir erledigen Ihre Elektroarbeiten schnell, sauber und zu fairen Preisen. Für Privatkunden und Gewerbebetriebe in Köln.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <article class="svc-card">
+        <div class="svc-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><line x1="12" y1="12" x2="12" y2="15"/>
+          </svg>
+        </div>
+        <h3 class="svc-title">Elektrokasten & Verteiler</h3>
+        <p class="svc-desc">Modernisierung und Neuinstallation von Sicherungskästen, Unterverteilern und Schaltanlagen – normgerecht, sicher und termingerecht.</p>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <h3 class="svc-title">Wallbox & E-Auto Ladestation</h3>
+        <p class="svc-desc">Professionelle Installation von Wallboxen und Ladestationen für Elektrofahrzeuge – zugelassen, schnell und normkonform nach VDE.</p>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <h3 class="svc-title">Herd & Küchengeräte</h3>
+        <p class="svc-desc">Anschluss von Elektroherden, Induktionskochfeldern und Einbaugeräten – oft noch am selben Tag nach Ihrem Anruf. Schnell & sauber.</p>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+          </svg>
+        </div>
+        <h3 class="svc-title">Starkstrom & Sonderspannung</h3>
+        <p class="svc-desc">Installation von Starkstromsteckdosen (400 V), Drehstromanschlüssen und Sonderspannungsanlagen für Gewerbe und Privatkunden.</p>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <h3 class="svc-title">Neuinstallation & Sanierung</h3>
+        <p class="svc-desc">Komplette Elektroinstallation beim Neubau oder in der Sanierung – neue Leitungen, Dosen, Schalter und Verteiler nach aktuellem VDE-Standard.</p>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <h3 class="svc-title">Reparatur & Störungsbeseitigung</h3>
+        <p class="svc-desc">Schnelle Fehlerdiagnose und Reparatur bei Elektrostörungen – zuverlässig, sauber und transparent abgerechnet. Kein unnötiger Aufwand.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALLERY ═══ -->
+<section class="section section-alt" id="galerie" aria-labelledby="gall-heading">
+  <div class="wrap" style="margin-bottom:2.25rem;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <div class="section-tag">Einblicke</div>
+        <h2 class="section-title" id="gall-heading">Unsere Arbeiten</h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <button class="gall-nav-btn" id="g-prev" aria-label="Vorheriges Bild">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="gall-nav-btn" id="g-next" aria-label="Nächstes Bild">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery-outer" style="padding-left:2rem;">
+    <div class="gallery-track" id="g-track">
+
+      <article class="g-slide">
+        <img src="content/company_images/shutterstock_2708689323.jpg" alt="Elektriker arbeitet am Sicherungskasten" loading="lazy">
+        <div class="g-overlay" aria-hidden="true"></div>
+        <div class="g-content">
+          <p class="g-cat">Service</p>
+          <h3 class="g-title">Elektrokasten & Verteiler</h3>
+        </div>
+      </article>
+
+      <article class="g-slide">
+        <img src="content/company_images/shutterstock_2669123793.jpg" alt="Familie mit Photovoltaikanlage" loading="lazy">
+        <div class="g-overlay" aria-hidden="true"></div>
+        <div class="g-content">
+          <p class="g-cat">Energie</p>
+          <h3 class="g-title">Photovoltaik & Solar</h3>
+        </div>
+      </article>
+
+      <article class="g-slide">
+        <img src="content/company_images/shutterstock_2610639815.jpg" alt="Solaranlage auf Dach" loading="lazy">
+        <div class="g-overlay" aria-hidden="true"></div>
+        <div class="g-content">
+          <p class="g-cat">Energie</p>
+          <h3 class="g-title">Solaranlagen</h3>
+        </div>
+      </article>
+
+      <article class="g-slide">
+        <img src="content/company_images/shutterstock_2603476467.jpg" alt="Windkraft und Solar" loading="lazy">
+        <div class="g-overlay" aria-hidden="true"></div>
+        <div class="g-content">
+          <p class="g-cat">Energie</p>
+          <h3 class="g-title">Erneuerbare Energie</h3>
+        </div>
+      </article>
+
+      <article class="g-slide">
+        <img src="content/company_images/shutterstock_2712372057.jpg" alt="Elektriker installiert Deckenleuchte" loading="lazy">
+        <div class="g-overlay" aria-hidden="true"></div>
+        <div class="g-content">
+          <p class="g-cat">Installation</p>
+          <h3 class="g-title">Beleuchtung & Leuchten</h3>
+        </div>
+      </article>
+
+      <article class="g-slide">
+        <img src="content/company_images/shutterstock_2692160395.jpg" alt="Gewerbliche Starkstrominstallation" loading="lazy">
+        <div class="g-overlay" aria-hidden="true"></div>
+        <div class="g-content">
+          <p class="g-cat">Gewerbe</p>
+          <h3 class="g-title">Starkstrom & Gewerbe</h3>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:2rem;" role="group" aria-label="Bildnavigation">
+    <button class="g-dot active" data-idx="0" aria-label="Bild 1"></button>
+    <button class="g-dot" data-idx="1" aria-label="Bild 2"></button>
+    <button class="g-dot" data-idx="2" aria-label="Bild 3"></button>
+    <button class="g-dot" data-idx="3" aria-label="Bild 4"></button>
+    <button class="g-dot" data-idx="4" aria-label="Bild 5"></button>
+    <button class="g-dot" data-idx="5" aria-label="Bild 6"></button>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="section" id="ueber-uns" aria-labelledby="about-heading">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;" class="about-cols">
+      <div>
+        <div class="section-tag">Warum wir</div>
+        <h2 class="section-title" id="about-heading" style="margin-bottom:1.4rem;">
+          Ehrlich.<br>Schnell.<br>Zuverlässig.
+        </h2>
+        <p style="color:#666;line-height:1.75;font-size:0.92rem;margin-bottom:1rem;">
+          Seit Jahren arbeiten wir in Köln und Umgebung für Privatkunden und Gewerbebetriebe. Was uns auszeichnet: Wir lösen Probleme – ohne sinnlose Kosten zu produzieren.
+        </p>
+        <p style="color:#666;line-height:1.75;font-size:0.92rem;margin-bottom:2.25rem;">
+          Ob Kleinreparatur oder Vollinstallation: Wir kommen schnell, arbeiten sauber und erklären transparent, was zu tun ist und was es wirklich kostet.
+        </p>
+        <a href="tel:015226764422" class="btn-p">Termin vereinbaren</a>
+      </div>
+
+      <div class="perk-grid">
+        <div class="perk-card">
+          <div class="perk-emoji">⚡</div>
+          <div class="perk-title">Gleicher Tag</div>
+          <div class="perk-sub">Oft noch am selben Tag verfügbar – kein langes Warten</div>
+        </div>
+        <div class="perk-card">
+          <div class="perk-emoji">💬</div>
+          <div class="perk-title">Immer erreichbar</div>
+          <div class="perk-sub">Klare Kommunikation, kein Callcenter, direkt zum Fachmann</div>
+        </div>
+        <div class="perk-card">
+          <div class="perk-emoji">✓</div>
+          <div class="perk-title">Transparent</div>
+          <div class="perk-sub">Abgerechnet wird genau das, was vereinbart wurde</div>
+        </div>
+        <div class="perk-card">
+          <div class="perk-emoji">🏆</div>
+          <div class="perk-title">5,0 Sterne</div>
+          <div class="perk-sub">273 echte Kundenbewertungen auf Google</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REVIEWS — Testimonials Columns (efferd / 21st.dev) ═══ -->
+<section class="section section-alt" id="bewertungen" aria-labelledby="rev-heading">
+  <div class="wrap" style="text-align:center;margin-bottom:3.5rem;">
+    <div class="section-tag" style="justify-content:center;">Kundenstimmen</div>
+    <h2 class="section-title" id="rev-heading" style="margin-bottom:0.75rem;">Was unsere Kunden sagen</h2>
+    <div style="display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:0.5rem;">
+      <span style="color:#CC0000;letter-spacing:3px;font-size:1rem;">★★★★★</span>
+      <span style="color:#888;font-size:0.85rem;">5,0 · 273 Bewertungen auf Google</span>
+    </div>
+  </div>
+
+  <div class="testimonials-outer" aria-label="Kundenbewertungen" role="region">
+
+    <!-- Column 1 – duration 22s -->
+    <div class="tcol">
+      <div class="tcol-track" style="--dur:22s">
+        <!-- Set 1 -->
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„Wir sind mit der Leistung sehr zufrieden und empfehlen Sie weiter. Ein Elektriker, der wirklich Ahnung hat und keine sinnlose Kosten produziert."</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">H</div>
+            <div><div class="tcard-name">Hamid Tabib Nia</div><div class="tcard-meta">vor einem Jahr · Google</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„Sehr kompetent, freundlich und schnell. Herd wurde innerhalb weniger Stunden angeschlossen – alles sauber und professionell erledigt."</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">M</div>
+            <div><div class="tcard-name">Maria Schwarz</div><div class="tcard-meta">vor 8 Monaten · Google</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„TOP organisiert! Immer erreichbar! Zuverlässig und transparent. Alles wird eingebaut und abgerechnet wie angeboten. Sehr zu empfehlen!"</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">T</div>
+            <div><div class="tcard-name">Tuppes 22</div><div class="tcard-meta">vor 3 Jahren · Google</div></div>
+          </div>
+        </div>
+        <!-- Set 2 (duplicate for infinite loop) -->
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„Wir sind mit der Leistung sehr zufrieden und empfehlen Sie weiter. Ein Elektriker, der wirklich Ahnung hat und keine sinnlose Kosten produziert."</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">H</div>
+            <div><div class="tcard-name">Hamid Tabib Nia</div><div class="tcard-meta">vor einem Jahr · Google</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„Sehr kompetent, freundlich und schnell. Herd wurde innerhalb weniger Stunden angeschlossen – alles sauber und professionell erledigt."</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">M</div>
+            <div><div class="tcard-name">Maria Schwarz</div><div class="tcard-meta">vor 8 Monaten · Google</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„TOP organisiert! Immer erreichbar! Zuverlässig und transparent. Alles wird eingebaut und abgerechnet wie angeboten. Sehr zu empfehlen!"</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">T</div>
+            <div><div class="tcard-name">Tuppes 22</div><div class="tcard-meta">vor 3 Jahren · Google</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Column 2 – duration 28s (hidden on mobile) -->
+    <div class="tcol">
+      <div class="tcol-track" style="--dur:28s">
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„1 Stunde nach dem Anruf kam Robert und hat uns einen neuen Herd angeschlossen. Hat alles super geklappt und war sehr freundlich. Empfehle ich auf jeden Fall!"</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">E</div>
+            <div><div class="tcard-name">Emma Böger</div><div class="tcard-meta">vor 4 Jahren · Google</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„Wir sind mit der ausgeführten Leistung, Zuverlässigkeit, Erreichbarkeit und Qualität hoch zufrieden. In unserem fast 50 Jahre alten Haus – alles tadellos."</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">J</div>
+            <div><div class="tcard-name">J. S.</div><div class="tcard-meta">vor einem Jahr · Google</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„Professionell und pünktlich. Die Wallbox wurde sauber installiert, alles erklärt und auch die Förderantragsdokumentation war vollständig."</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">K</div>
+            <div><div class="tcard-name">Klaus Hoffmann</div><div class="tcard-meta">vor 6 Monaten · Google</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„1 Stunde nach dem Anruf kam Robert und hat uns einen neuen Herd angeschlossen. Hat alles super geklappt und war sehr freundlich. Empfehle ich auf jeden Fall!"</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">E</div>
+            <div><div class="tcard-name">Emma Böger</div><div class="tcard-meta">vor 4 Jahren · Google</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„Wir sind mit der ausgeführten Leistung, Zuverlässigkeit, Erreichbarkeit und Qualität hoch zufrieden. In unserem fast 50 Jahre alten Haus – alles tadellos."</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">J</div>
+            <div><div class="tcard-name">J. S.</div><div class="tcard-meta">vor einem Jahr · Google</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„Professionell und pünktlich. Die Wallbox wurde sauber installiert, alles erklärt und auch die Förderantragsdokumentation war vollständig."</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">K</div>
+            <div><div class="tcard-name">Klaus Hoffmann</div><div class="tcard-meta">vor 6 Monaten · Google</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Column 3 – duration 18s (hidden on tablet + mobile) -->
+    <div class="tcol">
+      <div class="tcol-track" style="--dur:18s">
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„Freundlich, pünktlich, zuverlässig und sehr gute Arbeit. Diese Firma ist sehr zu empfehlen."</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">C</div>
+            <div><div class="tcard-name">Cassia Kürten</div><div class="tcard-meta">vor 2 Jahren · Google</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„Arbeiten wurden zügig und zuverlässig durchgeführt. Kommunikation lief gut. Wir sind sehr zufrieden und können den Betrieb weiter empfehlen!"</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">G</div>
+            <div><div class="tcard-name">Gerald S.</div><div class="tcard-meta">vor 2 Jahren · Google</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„Schnelle Reaktion auf meine Anfrage, faire Preise und tadellose Ausführung. Die Elektroanlage wurde komplett saniert – alles perfekt!"</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">A</div>
+            <div><div class="tcard-name">Andreas Braun</div><div class="tcard-meta">vor 5 Monaten · Google</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„Freundlich, pünktlich, zuverlässig und sehr gute Arbeit. Diese Firma ist sehr zu empfehlen."</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">C</div>
+            <div><div class="tcard-name">Cassia Kürten</div><div class="tcard-meta">vor 2 Jahren · Google</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„Arbeiten wurden zügig und zuverlässig durchgeführt. Kommunikation lief gut. Wir sind sehr zufrieden und können den Betrieb weiter empfehlen!"</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">G</div>
+            <div><div class="tcard-name">Gerald S.</div><div class="tcard-meta">vor 2 Jahren · Google</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">„Schnelle Reaktion auf meine Anfrage, faire Preise und tadellose Ausführung. Die Elektroanlage wurde komplett saniert – alles perfekt!"</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">A</div>
+            <div><div class="tcard-name">Andreas Braun</div><div class="tcard-meta">vor 5 Monaten · Google</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;margin-top:3rem;">
+    <a href="https://g.page/r/elektro-koeln-hr" target="_blank" rel="noopener" class="btn-o" style="display:inline-flex;gap:0.5rem;align-items:center;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#CC0000" aria-hidden="true"><path d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27 3.09 0 4.9 1.97 4.9 1.97L19 4.72S16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12c0 5.05 4.13 10 10.22 10 5.35 0 9.25-3.67 9.25-9.09 0-1.15-.15-1.81-.15-1.81z"/></svg>
+      Alle 273 Bewertungen auf Google
+    </a>
+  </div>
+</section>
+
+<!-- ═══ TRUST SCROLL ═══ -->
+<div style="padding:3.5rem 0;border-top:1px solid #EBEBEB;background:#FFFFFF;" aria-label="Kundenversprechen">
+  <p style="text-align:center;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:#BBBBBB;margin-bottom:2rem;">Das schätzen unsere Kunden</p>
+  <div class="trust-wrap">
+    <div class="edge-mask-l" aria-hidden="true"></div>
+    <div class="edge-mask-r" aria-hidden="true"></div>
+    <div class="trust-track" aria-hidden="true">
+      <div class="t-badge"><span class="t-icon">★</span>Gleicher Tag Termin</div>
+      <div class="t-badge"><span class="t-icon">⚡</span>Schnelle Reaktionszeit</div>
+      <div class="t-badge"><span class="t-icon">✓</span>Faire Preise</div>
+      <div class="t-badge"><span class="t-icon">📍</span>Köln &amp; Umgebung</div>
+      <div class="t-badge"><span class="t-icon">🧹</span>Sauber &amp; Ordentlich</div>
+      <div class="t-badge"><span class="t-icon">💬</span>Immer erreichbar</div>
+      <div class="t-badge"><span class="t-icon">★</span>5,0 Google Bewertung</div>
+      <div class="t-badge"><span class="t-icon">✓</span>273 Kundenstimmen</div>
+      <div class="t-badge"><span class="t-icon">⚡</span>VDE-konform</div>
+      <div class="t-badge"><span class="t-icon">🏠</span>Privat &amp; Gewerbe</div>
+      <div class="t-badge"><span class="t-icon">★</span>Gleicher Tag Termin</div>
+      <div class="t-badge"><span class="t-icon">⚡</span>Schnelle Reaktionszeit</div>
+      <div class="t-badge"><span class="t-icon">✓</span>Faire Preise</div>
+      <div class="t-badge"><span class="t-icon">📍</span>Köln &amp; Umgebung</div>
+      <div class="t-badge"><span class="t-icon">🧹</span>Sauber &amp; Ordentlich</div>
+      <div class="t-badge"><span class="t-icon">💬</span>Immer erreichbar</div>
+      <div class="t-badge"><span class="t-icon">★</span>5,0 Google Bewertung</div>
+      <div class="t-badge"><span class="t-icon">✓</span>273 Kundenstimmen</div>
+      <div class="t-badge"><span class="t-icon">⚡</span>VDE-konform</div>
+      <div class="t-badge"><span class="t-icon">🏠</span>Privat &amp; Gewerbe</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="section section-alt" id="kontakt" aria-labelledby="ct-heading">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <div class="section-tag">Kontakt</div>
+        <h2 class="section-title" id="ct-heading" style="margin-bottom:1rem;">Wir sind<br>für Sie da.</h2>
+        <p style="color:#666;line-height:1.75;font-size:0.92rem;margin-bottom:2.5rem;">Rufen Sie einfach an – oft kommen wir noch am selben Tag zu Ihnen. Kein Callcenter, keine Warteschleife. Direkt zum Fachmann.</p>
+
+        <div>
+          <div class="ci-item">
+            <div class="ci-icon" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="ci-lbl">Telefon</div>
+              <a href="tel:015226764422" class="ci-val" style="text-decoration:none;color:#1A1A1A;transition:color 0.2s;display:block;font-weight:600;" onmouseover="this.style.color='#CC0000'" onmouseout="this.style.color='#1A1A1A'">01522 6764422</a>
+            </div>
+          </div>
+
+          <div class="ci-item">
+            <div class="ci-icon" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <div class="ci-lbl">Adresse</div>
+              <div class="ci-val">Kalker Hauptstraße 164<br>51103 Köln</div>
+            </div>
+          </div>
+
+          <div class="ci-item">
+            <div class="ci-icon" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div>
+              <div class="ci-lbl">Öffnungszeiten</div>
+              <div class="ci-val">Mo – Fr: 08:00 – 18:00 Uhr<br><span style="color:#999;font-size:0.85rem;">Termine auch außerhalb möglich</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:2.25rem;">
+          <a href="tel:015226764422" class="btn-p">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+            01522 6764422 anrufen
+          </a>
+        </div>
+      </div>
+
+      <!-- Map placeholder -->
+      <div style="background:#FFFFFF;border:1px solid #E8E8E8;border-radius:20px;overflow:hidden;height:420px;position:relative;box-shadow:0 4px 24px rgba(0,0,0,0.06);">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem;">
+          <div style="width:64px;height:64px;background:rgba(204,0,0,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#CC0000;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;color:#1A1A1A;margin-bottom:0.4rem;">Elektro Köln HR GmbH</div>
+            <div style="font-size:0.85rem;color:#888;">Kalker Hauptstraße 164, 51103 Köln</div>
+          </div>
+          <a href="https://maps.google.com/?q=Kalker+Hauptstraße+164,+51103+Köln" target="_blank" rel="noopener noreferrer" class="btn-o" style="font-size:0.82rem;" aria-label="Auf Google Maps öffnen">
+            In Google Maps öffnen
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
+    <div>
+      <img class="footer-logo" src="brand_assets/logo.svg" alt="Elektro Köln HR GmbH" height="32" style="margin-bottom:0.5rem;">
+      <div style="font-size:0.75rem;color:#555;">Kalker Hauptstraße 164 · 51103 Köln · 01522 6764422</div>
+    </div>
+    <nav style="display:flex;gap:1.75rem;flex-wrap:wrap;" aria-label="Footer Navigation">
+      <a href="#leistungen" style="font-size:0.82rem;color:#666;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#666'">Leistungen</a>
+      <a href="#galerie" style="font-size:0.82rem;color:#666;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#666'">Galerie</a>
+      <a href="#bewertungen" style="font-size:0.82rem;color:#666;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#666'">Bewertungen</a>
+      <a href="#kontakt" style="font-size:0.82rem;color:#666;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#666'">Kontakt</a>
+    </nav>
+    <div style="font-size:0.73rem;color:#444;">© 2024 Elektro Köln HR GmbH. Alle Rechte vorbehalten.</div>
+  </div>
+</footer>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+// ── Navigation ──
+const nav = document.getElementById('nav');
+function updateNav() { nav.classList.toggle('solid', window.scrollY > 60); }
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
+
+// ── Burger menu ──
+const burger = document.getElementById('burger');
+const mobMenu = document.getElementById('mob-menu');
+let menuOpen = false;
+function toggleMenu(open) {
+  menuOpen = open;
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+  mobMenu.classList.toggle('open', open);
+  mobMenu.setAttribute('aria-hidden', !open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+burger.addEventListener('click', () => toggleMenu(!menuOpen));
+mobMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) toggleMenu(false); });
+
+// ── Hero Scroll Expansion ──
+(function () {
+  const heroEl   = document.getElementById('hero');
+  const heroBg   = document.getElementById('hero-bg');
+  const vidWrap  = document.getElementById('vid-wrap');
+  const vidCta   = document.getElementById('vid-cta');
+  const wordLeft = document.getElementById('hw-left');
+  const wordRight= document.getElementById('hw-right');
+  const scrollHint = document.getElementById('scroll-hint');
+
+  function updateHero() {
+    const scrollable = heroEl.offsetHeight - window.innerHeight;
+    const p = Math.min(1, Math.max(0, window.scrollY / scrollable));
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const mobile = vw < 768;
+    const iW = mobile ? Math.min(290, vw * 0.88) : 380;
+    const iH = mobile ? Math.min(420, vh * 0.72) : 520;
+    vidWrap.style.width        = (iW + (vw - iW) * p) + 'px';
+    vidWrap.style.height       = (iH + (vh - iH) * p) + 'px';
+    vidWrap.style.borderRadius = (20 * (1 - p)) + 'px';
+    heroBg.style.opacity = 1 - p;
+    const offset = p * (vw * 0.38 + 120);
+    const wAlpha = Math.max(0, 1 - p * 1.8);
+    wordLeft.style.opacity  = wAlpha;
+    wordRight.style.opacity = wAlpha;
+    wordLeft.style.transform  = `translateY(-50%) translateX(-${offset}px)`;
+    wordRight.style.transform = `translateY(-50%) translateX(${offset}px)`;
+    scrollHint.style.opacity = Math.max(0, 1 - p * 5);
+    const ctaAlpha = Math.max(0, (p - 0.78) / 0.22);
+    vidCta.style.opacity = ctaAlpha;
+    vidCta.classList.toggle('visible', ctaAlpha > 0.05);
+    vidCta.setAttribute('aria-hidden', ctaAlpha < 0.05 ? 'true' : 'false');
+  }
+  window.addEventListener('scroll', updateHero, { passive: true });
+  updateHero();
+})();
+
+// ── Gallery Carousel ──
+(function () {
+  const track  = document.getElementById('g-track');
+  const slides = track.querySelectorAll('.g-slide');
+  const dots   = document.querySelectorAll('.g-dot');
+  const prev   = document.getElementById('g-prev');
+  const next   = document.getElementById('g-next');
+  let cur = 0;
+  const SLIDE_W = () => slides[0].offsetWidth + 16;
+  function goTo(n) {
+    cur = Math.max(0, Math.min(slides.length - 1, n));
+    track.style.transform = `translateX(-${cur * SLIDE_W()}px)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+    prev.disabled = cur === 0;
+    next.disabled = cur === slides.length - 1;
+  }
+  prev.addEventListener('click', () => goTo(cur - 1));
+  next.addEventListener('click', () => goTo(cur + 1));
+  dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.idx)));
+  let startX = 0;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) goTo(dx < 0 ? cur + 1 : cur - 1);
+  });
+  goTo(0);
+})();
+
+// ── GSAP ScrollTrigger ──
+gsap.registerPlugin(ScrollTrigger);
+document.querySelectorAll('.svc-card, .tcard, .perk-card').forEach(el => {
+  gsap.set(el, { opacity: 0, y: 28 });
+  ScrollTrigger.create({
+    trigger: el, start: 'top 90%',
+    onEnter: () => gsap.to(el, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }),
+  });
+});
+document.querySelectorAll('.stat-item').forEach((el, i) => {
+  gsap.set(el, { opacity: 0, y: 18 });
+  ScrollTrigger.create({
+    trigger: el, start: 'top 92%',
+    onEnter: () => gsap.to(el, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', delay: i * 0.1 }),
+  });
+});
+</script>
+</body>
+</html>

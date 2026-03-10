@@ -1,0 +1,10 @@
+<svg viewBox="0 0 260 64" width="260" height="64" xmlns="http://www.w3.org/2000/svg" aria-label="Elektro Köln HR GmbH">
+  <!-- Company name: Elektro Köln HR -->
+  <text x="0" y="38" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="34" fill="#1A1A1A" letter-spacing="-1">Elektro Köln HR</text>
+  <!-- GmbH subtitle -->
+  <text x="174" y="56" font-family="Arial,sans-serif" font-weight="400" font-size="14" fill="#1A1A1A">GmbH</text>
+  <!-- Red square icon -->
+  <rect x="218" y="4" width="42" height="56" rx="7" fill="#CC0000"/>
+  <!-- Lightning bolt path (white) -->
+  <path d="M236 10 L228 34 L235 34 L226 54 L248 28 L240 28 L248 10 Z" fill="white"/>
+</svg>

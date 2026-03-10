@@ -1,0 +1,5 @@
+hero component: https://21st.dev/community/components/arunachalam0606/scroll-expansion-hero/default
+
+tiles: https://21st.dev/community/components/shadcnblockscom/gallery4/default
+
+companys: https://21st.dev/community/components/shadcnblockscom/logos3/default

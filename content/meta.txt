@@ -1,0 +1,5 @@
+# Auto-generated – update when known
+Domain:         [elektro-koeln-hr.de]
+GitHub-Repo:    github.com/CGWeb94/website-testing-elektriker
+Vercel-Projekt: website-testing-elektriker
+Canonical-URL:  https://website-testing-elektriker.vercel.app
