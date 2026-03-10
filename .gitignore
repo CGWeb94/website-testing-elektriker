@@ -14,3 +14,6 @@ Thumbs.db
 # Temp
 temporary screenshots/
 *.log
+
+# Separate sub-projects (have their own repos)
+beatrice-goihl/

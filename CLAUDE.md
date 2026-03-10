@@ -192,3 +192,72 @@ vercel domains add [kunde-domain.de]
 4. Output the live URL to the user
 5. Update `content/meta.txt` with the real Vercel URL
 
+## GitHub + Vercel Auto-Deploy Setup
+
+This is the full workflow to create a GitHub repo and connect it to Vercel so every `git push` triggers a new deployment.
+
+### Prerequisites (one-time, user does manually)
+```bash
+# Install GitHub CLI (if not present)
+winget install --id GitHub.cli --silent --accept-source-agreements --accept-package-agreements
+
+# Authenticate GitHub CLI (opens browser OAuth)
+gh auth login
+# → Choose: GitHub.com → HTTPS → Login with a web browser
+
+# Verify
+gh auth status
+```
+
+### Step 1 – Initialize git and commit (if not done yet)
+```bash
+cd "project-folder"
+git init
+git add .
+git commit -m "Initial commit"
+```
+
+### Step 2 – Create GitHub repo and push
+```bash
+# Creates public repo under the user's account, sets origin, pushes
+gh repo create [folder-name] --public --source=. --remote=origin --push
+```
+Naming convention: GitHub repo name = Vercel project name = project folder name.
+
+### Step 3 – First Vercel deployment
+```bash
+vercel --prod --yes --name [folder-name]
+```
+This creates the Vercel project. Note the deployment URL.
+
+### Step 4 – Connect Vercel to GitHub for auto-deploy
+Two options:
+
+**Option A (Vercel Dashboard – recommended):**
+1. Go to vercel.com → your project → Settings → Git
+2. Click "Connect Git Repository"
+3. Select the GitHub repo you just created
+4. Done – every push to `main` will auto-deploy
+
+**Option B (CLI):**
+```bash
+vercel link   # links local folder to Vercel project
+# Then in vercel.json or dashboard connect the GitHub repo
+```
+
+### Step 5 – All future deployments
+```bash
+git add .
+git commit -m "Update: ..."
+git push         # → Vercel auto-deploys within ~30 seconds
+```
+
+### Summary of commands (happy path)
+```bash
+gh auth login                                                        # once
+gh repo create [name] --public --source=. --remote=origin --push    # creates + pushes
+vercel --prod --yes --name [name]                                    # first deploy
+# then connect GitHub in Vercel dashboard → auto-deploy active
+git push                                                             # future deploys
+```
+
