@@ -60,7 +60,7 @@
     }
 
     /* Logo SVG in nav */
-    .nav-logo img { height: 38px; width: auto; display: block; }
+    .nav-logo img { height: 38px; width: auto; }
     .nav-logo-light { display: block; }
     .nav-logo-dark  { display: none; }
     #nav.solid .nav-logo-light { display: none; }
@@ -181,7 +181,7 @@
       font-size: clamp(3.5rem, 8vw, 8rem);
       letter-spacing: -0.02em;
       color: transparent;
-      -webkit-text-stroke: 1px rgba(204,0,0,0.1);
+      -webkit-text-stroke: 1px rgba(204,0,0,0.22);
       white-space: nowrap; pointer-events: none; user-select: none;
     }
     #hw-left { right: calc(50% + 210px); }
@@ -431,7 +431,7 @@
       padding: 2.5rem 2rem;
       border-top: 3px solid #CC0000;
     }
-    .footer-logo { height: 34px; width: auto; filter: brightness(0) invert(1); }
+    .footer-logo { height: 34px; width: auto; }
 
     /* ── Responsive ── */
     @media (max-width: 1024px) {
@@ -1074,7 +1074,12 @@
 <footer>
   <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
     <div>
-      <img class="footer-logo" src="brand_assets/logo.svg" alt="Elektro Köln HR GmbH" height="32" style="margin-bottom:0.5rem;">
+      <svg class="footer-logo" viewBox="0 0 260 64" height="32" xmlns="http://www.w3.org/2000/svg" aria-label="Elektro Köln HR GmbH" style="margin-bottom:0.5rem;">
+        <text x="0" y="38" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="34" fill="#FFFFFF" letter-spacing="-1">Elektro Köln HR</text>
+        <text x="174" y="56" font-family="Arial,sans-serif" font-weight="400" font-size="14" fill="rgba(255,255,255,0.7)">GmbH</text>
+        <rect x="218" y="4" width="42" height="56" rx="7" fill="#CC0000"/>
+        <path d="M236 10 L228 34 L235 34 L226 54 L248 28 L240 28 L248 10 Z" fill="white"/>
+      </svg>
       <div style="font-size:0.75rem;color:#555;">Kalker Hauptstraße 164 · 51103 Köln · 01522 6764422</div>
     </div>
     <nav style="display:flex;gap:1.75rem;flex-wrap:wrap;" aria-label="Footer Navigation">
