@@ -164,100 +164,83 @@ Canonical-URL:  https://[kunde-domain.de]
 - If domain is still a placeholder, use `https://[folder-name].vercel.app` as fallback canonical URL.
 
 ## Deployment (Vercel)
-- Vercel CLI must be installed globally: `npm i -g vercel`
-- User must run `vercel login` **once** manually (browser OAuth — can't be automated).
-- After login, I can handle everything via CLI:
+- Vercel CLI installed globally, logged in as `cgweb94` — verify: `vercel whoami`
 
-### First deploy (new project):
+### Subsequent deploys (GitHub connected → auto-deploy):
 ```bash
-cd "project-folder"
-vercel --prod --yes --name [folder-name]
+git push   # Vercel auto-deploys within ~30s
 ```
-This creates the Vercel project automatically with the correct name.
 
-### Subsequent deploys:
+### Subsequent deploys (no GitHub connection):
 ```bash
 vercel --prod
 ```
 
-### Link custom domain (after user adds it in Vercel dashboard or via CLI):
+### Link custom domain:
 ```bash
 vercel domains add [kunde-domain.de]
 ```
 
 ### Full workflow I run when user says "deploy":
 1. Read `content/meta.txt` for project name and domain
-2. Check if `vercel login` has been done: `vercel whoami`
-3. Run `vercel --prod --yes --name [project-name]`
+2. Verify: `vercel whoami`
+3. If first deploy: follow GitHub + Vercel section above (Steps 1–4)
 4. Output the live URL to the user
 5. Update `content/meta.txt` with the real Vercel URL
 
+## GitHub Account & Credentials
+
+- **GitHub user:** `CGWeb94`
+- **PAT (Personal Access Token)** is stored in `~/.git-credentials` — works for all projects forever.
+- To use the PAT for `gh` CLI commands (gh auth login has session issues in bash), prefix with `GH_TOKEN=[TOKEN]`:
+  ```bash
+  GH_TOKEN=[TOKEN] "/c/Program Files/GitHub CLI/gh" repo create [name] --public --source="c:/Users/Chris/Claude Projekte/[name]" --remote=origin --push
+  ```
+- **Note:** The actual PAT value is NOT stored in this file. It lives in `~/.git-credentials`. If it needs to be re-created: github.com/settings/tokens → classic → scopes: `repo` + `workflow`.
+
 ## GitHub + Vercel Auto-Deploy Setup
 
-This is the full workflow to create a GitHub repo and connect it to Vercel so every `git push` triggers a new deployment.
+Full workflow to create a GitHub repo and connect it to Vercel so every `git push` triggers a new deployment.
 
-### Prerequisites (one-time, user does manually)
+### One-time Prerequisites (already done on this machine)
+- **GitHub CLI** installed at: `C:/Program Files/GitHub CLI/gh`
+- **PAT stored** in `~/.git-credentials` (set via `git config --global credential.helper store`)
+- **Vercel CLI** installed globally, logged in as `cgweb94` — verify with `vercel whoami`
+
+### Step 1 – Initialize git repo (if not yet done)
 ```bash
-# Install GitHub CLI (if not present)
-winget install --id GitHub.cli --silent --accept-source-agreements --accept-package-agreements
-
-# Authenticate GitHub CLI (opens browser OAuth)
-gh auth login
-# → Choose: GitHub.com → HTTPS → Login with a web browser
-
-# Verify
-gh auth status
-```
-
-### Step 1 – Initialize git and commit (if not done yet)
-```bash
-cd "project-folder"
+cd "c:/Users/Chris/Claude Projekte/[folder-name]"
 git init
-git add .
+git add -A
 git commit -m "Initial commit"
 ```
 
 ### Step 2 – Create GitHub repo and push
 ```bash
-# Creates public repo under the user's account, sets origin, pushes
-gh repo create [folder-name] --public --source=. --remote=origin --push
+GH_TOKEN=[TOKEN] "/c/Program Files/GitHub CLI/gh" repo create [folder-name] --public --source="c:/Users/Chris/Claude Projekte/[folder-name]" --remote=origin --push
 ```
-Naming convention: GitHub repo name = Vercel project name = project folder name.
 
 ### Step 3 – First Vercel deployment
 ```bash
-vercel --prod --yes --name [folder-name]
+cd "c:/Users/Chris/Claude Projekte/[folder-name]"
+vercel --prod --yes
 ```
-This creates the Vercel project. Note the deployment URL.
 
-### Step 4 – Connect Vercel to GitHub for auto-deploy
-Two options:
-
-**Option A (Vercel Dashboard – recommended):**
-1. Go to vercel.com → your project → Settings → Git
-2. Click "Connect Git Repository"
-3. Select the GitHub repo you just created
-4. Done – every push to `main` will auto-deploy
-
-**Option B (CLI):**
-```bash
-vercel link   # links local folder to Vercel project
-# Then in vercel.json or dashboard connect the GitHub repo
-```
+### Step 4 – Connect Vercel to GitHub for auto-deploy (user does once in browser)
+1. Go to vercel.com → your project → **Settings → Git**
+2. Click **"Connect Git Repository"** → select `CGWeb94/[folder-name]`
+3. Done — every future `git push` auto-deploys
 
 ### Step 5 – All future deployments
 ```bash
-git add .
-git commit -m "Update: ..."
-git push         # → Vercel auto-deploys within ~30 seconds
+git add [files] && git commit -m "..." && git push
 ```
 
-### Summary of commands (happy path)
+### Quick summary
 ```bash
-gh auth login                                                        # once
-gh repo create [name] --public --source=. --remote=origin --push    # creates + pushes
-vercel --prod --yes --name [name]                                    # first deploy
-# then connect GitHub in Vercel dashboard → auto-deploy active
-git push                                                             # future deploys
+git init && git add -A && git commit -m "Initial commit"
+GH_TOKEN=[TOKEN] "/c/Program Files/GitHub CLI/gh" repo create [name] --public --source="c:/Users/Chris/Claude Projekte/[name]" --remote=origin --push
+vercel --prod --yes
+# connect GitHub in Vercel dashboard → all future deploys via git push
 ```
 
